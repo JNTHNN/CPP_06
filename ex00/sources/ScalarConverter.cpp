@@ -59,13 +59,13 @@ double stringToDouble(const std::string& str)
 }
 
 /* Handlers */
-void ScalarConverter::handleChar(const std::string& literal)
+void	handleChar(const std::string& literal)
 {
     char c = literal[0];
     display(c, static_cast<int>(c), static_cast<float>(c), static_cast<double>(c));
 }
 
-void ScalarConverter::handleInt(const std::string& literal)
+void	handleInt(const std::string& literal)
 {
     try
     {
@@ -78,7 +78,7 @@ void ScalarConverter::handleInt(const std::string& literal)
     }
 }
 
-void ScalarConverter::handleFloat(const std::string& literal)
+void	handleFloat(const std::string& literal)
 {
     try
     {
@@ -91,7 +91,7 @@ void ScalarConverter::handleFloat(const std::string& literal)
     }
 }
 
-void ScalarConverter::handleDouble(const std::string& literal)
+void	handleDouble(const std::string& literal)
 {
     try
     {
@@ -104,7 +104,7 @@ void ScalarConverter::handleDouble(const std::string& literal)
     }
 }
 
-void ScalarConverter::display(char c, int i, float f, double d)
+void	display(char c, int i, float f, double d)
 {
     std::cout << "char: ";
     if (std::isprint(c))
@@ -117,7 +117,7 @@ void ScalarConverter::display(char c, int i, float f, double d)
     std::cout << "double: " << d << std::endl;
 }
 
-void	ScalarConverter::handleEdge(const std::string& literal)
+void	handleEdge(const std::string& literal)
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
@@ -129,7 +129,7 @@ void	ScalarConverter::handleEdge(const std::string& literal)
 	std::cout << "double: " << literal << std::endl;
 }
 
-int ScalarConverter::detectType(const std::string& literal)
+int detectType(const std::string& literal)
 {
     if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(static_cast<unsigned char>(literal[0])))
         return CHAR;

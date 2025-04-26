@@ -22,14 +22,6 @@ class	ScalarConverter
 		~ScalarConverter();
 		ScalarConverter& operator=(const ScalarConverter& base);
 
-		static int	detectType(const std::string& literal);
-		static void	display(char c, int i, float f, double d);
-		static void	handleChar(const std::string& literal);
-		static void	handleInt(const std::string& literal);
-		static void	handleFloat(const std::string& literal);
-		static void	handleDouble(const std::string& literal);
-		static void	handleEdge(const std::string& literal);
-
 	public:
 		static void	convert(const std::string& literal);
 };
