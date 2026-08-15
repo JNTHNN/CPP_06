@@ -1,5 +1,7 @@
 #include "../includes/ScalarConverter.hpp"
 
+void display(char c, int i, float f, double d);
+
 ScalarConverter::ScalarConverter(void)
 {
     return ;
@@ -121,16 +123,19 @@ void	handleEdge(const std::string& literal)
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: " << literal;
-	if (literal.find('f') == std::string::npos)
-		std::cout << "f" << std::endl;
-	else
-		std::cout << std::endl;
-	std::cout << "double: " << literal << std::endl;
+	
+	std::string base = literal;
+	if (base == "nanf" || base == "+inff" || base == "-inff")
+		base = base.substr(0, base.length() - 1);
+		
+	std::cout << "float: " << base << "f" << std::endl;
+	std::cout << "double: " << base << std::endl;
 }
 
 int detectType(const std::string& literal)
 {
+	if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "nanf" || literal == "+inff" || literal == "-inff")
+		return EDGE;
     if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(static_cast<unsigned char>(literal[0])))
         return CHAR;
     if (literal.find('.') == std::string::npos && literal.find('f') == std::string::npos && literal != "nan")
@@ -139,8 +144,6 @@ int detectType(const std::string& literal)
         return FLOAT;
     if (literal.find('.') != std::string::npos)
         return DOUBLE;
-	if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "nanf" || literal == "+inff" || literal == "-inff")
-		return EDGE;
     return UNKNOWN;
 }
 
